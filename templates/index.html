@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BMI値計算</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<h1>BMI値計算</h1>
+
+<form method="post" action="/">
+    <div>
+        身長:
+        <input type="text" name="height" value="{% if res %}{{ res.height }}{% endif %}">
+        cm
+        {% if res %}
+        <br><span class="error">{{ res.error_height }}</span>
+        {% endif %}
+    </div>
+    <div>
+        体重:
+        <input type="text" name="weight" value="{% if res %}{{ res.weight }}{% endif %}">
+        kg
+        {% if res %}
+        <br><span class="error">{{ res.error_weight }}</span>
+        {% endif %}
+    </div>
+    <div>
+        <input type="submit" name="calc" value="計算">
+    </div>
+</form>
+
+{% if res %}
+<div>
+    {% if res.result %}
+    <h2>あなたのBMI値</h2>
+    <div class="result">
+        {{ res.result }}
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="source">
+    <h2>参考情報</h2>
+    <table>
+        <tr><th>状態</th><th>指標</th></tr>
+        <tr><td>16.00未満</td><td>痩せすぎ</td></tr>
+        <tr><td>16.00以上 17.00未満</td><td>痩せ</td></tr>
+        <tr><td>17.00以上 18.50未満</td><td>痩せ気味</td></tr>
+        <tr><td>18.50以上 25.00未満</td><td>普通</td></tr>
+        <tr><td>25.00以上 30.00未満</td><td>前肥満</td></tr>
+        <tr><td>30.00以上 35.00未満</td><td>肥満（1度）</td></tr>
+        <tr><td>35.00以上 40.00未満</td><td>肥満（2度）</td></tr>
+        <tr><td>40.00以上</td><td>肥満（3度）</td></tr>
+    </table>
+
+    
+</div>
+<footer>wikipedia BMIの計算表より参照</footer>
+<footer>YOU saka</footer>
+</body>
+</html>
